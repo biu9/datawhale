@@ -16,6 +16,10 @@ from torch.autograd import Variable
 
 from transformer import make_model, subsequent_mask
 
+import io
+import sys
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
+
 
 class Batch:
     "Object for holding a batch of data with mask during training."
@@ -220,7 +224,7 @@ class SimpleLossCompute:
 
 
 # Train the simple copy task.
-device = "cuda"
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 nrof_epochs = 20
 batch_size = 32
 V = 11    # 词典的数量
