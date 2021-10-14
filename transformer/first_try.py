@@ -20,6 +20,7 @@ import io
 import sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 
+from numpy import int64
 
 class Batch:
     "Object for holding a batch of data with mask during training."
@@ -222,7 +223,7 @@ class SimpleLossCompute:
         #return loss.data[0] * norm  # TODO
         return loss.item() * norm
 
-
+ 
 # Train the simple copy task.
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 nrof_epochs = 20
