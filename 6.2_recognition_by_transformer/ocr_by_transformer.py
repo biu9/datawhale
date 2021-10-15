@@ -287,8 +287,8 @@ def judge_is_correct(pred, label):
 if __name__ == "__main__":
 
     # TODO set parameters
-    base_data_dir = '../../../dataset/ICDAR_2015/'    # 数据集根目录，请将数据下载到此位置
-    device = torch.device('cuda')
+    base_data_dir = '6.2_recognition_by_transformer\\dataset\\ICDAR_2015\\'    # 数据集根目录，请将数据下载到此位置
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     nrof_epochs = 1500
     batch_size = 64
     model_save_path = './log/ex1_ocr_model.pth'

@@ -11,6 +11,10 @@
 import os
 import cv2
 
+import io
+import sys
+import urllib.request
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准输出的默认编码
 
 def statistics_label_cnt(lbl_path, lbl_cnt_map):
     """
@@ -49,7 +53,7 @@ def load_lbl2id_map(lbl2id_map_path):
     """
     lbl2id_map = dict()
     id2lbl_map = dict()
-    with open(lbl2id_map_path, 'r') as reader:
+    with open(lbl2id_map_path, 'r',encoding='utf-8') as reader:
         for line in reader:
             items = line.rstrip().split('\t')
             label = items[0]
@@ -62,7 +66,7 @@ def load_lbl2id_map(lbl2id_map_path):
 if __name__ == "__main__":
 
     # 数据集根目录，请将数据下载到此位置
-    base_data_dir = '../../../dataset/ICDAR_2015/'
+    base_data_dir = '6.2_recognition_by_transformer\\dataset\\ICDAR_2015\\'
 
     train_img_dir = os.path.join(base_data_dir, 'train')
     valid_img_dir = os.path.join(base_data_dir, 'valid')
@@ -98,7 +102,7 @@ if __name__ == "__main__":
         lbl2id_map[lbl] = cur_id
         cur_id += 1
     # 保存 label - id 之间的映射
-    with open(lbl2id_map_path, 'w') as writer:
+    with open(lbl2id_map_path, 'w',encoding='utf-8') as writer:
         for lbl in lbl2id_map.keys():
             cur_id = lbl2id_map[lbl]
             print(lbl, cur_id)
