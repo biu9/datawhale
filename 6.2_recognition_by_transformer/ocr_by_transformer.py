@@ -252,7 +252,7 @@ def run_epoch(data_loader, model, loss_compute, device=None):
             tokens = 0
     return total_loss / total_tokens
 
-
+#
 # greedy decode
 def greedy_decode(model, src, src_mask, max_len, start_symbol, end_symbol):
     memory = model.encode(src, src_mask)
